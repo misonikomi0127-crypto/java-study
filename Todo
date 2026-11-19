@@ -34,8 +34,8 @@ public class Todo{
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("\n1.追加 2.表示 3.削除 4.終了");
 		while(true) {
+			System.out.println("\n1.追加 2.表示 3.削除 4.終了");
 			String input = scanner.nextLine();
 			switch(input) {
 			//終了時にはbreakをつける
@@ -51,7 +51,7 @@ public class Todo{
 				
 			case"3":
 				System.out.println("削除するタスクを入力してください");
-				int index = Integer.parseInt(scanner.nextLine());
+				int index = Integer.parseInt(scanner.nextLine()) -1;
 				deleteTask(index);
 				break;
 				
