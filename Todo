@@ -2,20 +2,21 @@ package practice;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Todo {
-	static ArrayList<String>tasks = new ArrayList<>();
+public class Todo{
+	static ArrayList<String> tasks = new ArrayList<>();
 	
 	public static void addTask(String task) {
 		tasks.add(task);
-		System.out.println("追加されました:" + task);
+		System.out.println("追加しました: " + task);
 	}
-
+	
 	public static void viewTasks() {
+		System.out.println("一覧です");
 		if(tasks.isEmpty()) {
-			System.out.println("タスクはありません。");
+			System.out.println("リストがありません");
 		}else {
-			System.out.println("タスク一覧:");
-			for(int i = 0; i < tasks.size(); i++) {
+			for(int i = 0; i < tasks.size(); i++){
+				//ArrayListから値を取り出すにはget()が必要
 				System.out.println((i + 1) + ":" + tasks.get(i));
 			}
 		}
@@ -24,40 +25,46 @@ public class Todo {
 	public static void deleteTask(int index) {
 		if(index >= 0 && index < tasks.size()) {
 			String removed = tasks.remove(index);
-			System.out.println("削除されました:" + removed);
+			System.out.println("削除しました: " + removed);
+	 //値が違う場合も入力
 		}else {
-			System.out.println("番号が正しくありません");
+			System.out.println("値がまちがっている");
 		}
 	}
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		System.out.println("\n1.追加 2.表示 3.削除 4.終了");
 		while(true) {
-			System.out.println("\n1.タスク追加 2. 表示 3. 削除 4. 終了");
 			String input = scanner.nextLine();
 			switch(input) {
+			//終了時にはbreakをつける
 			case"1":
-				System.out.println("追加するタスク:");
+				System.out.println("追加するタスクを入力してください");
 				String task = scanner.nextLine();
 				addTask(task);
 				break;
+				
 			case"2":
 				viewTasks();
 				break;
+				
 			case"3":
-				System.out.print("削除する番号:");
-				int idx = Integer.parseInt(scanner.nextLine())-1;
-				deleteTask(idx);
+				System.out.println("削除するタスクを入力してください");
+				int index = Integer.parseInt(scanner.nextLine());
+				deleteTask(index);
 				break;
+				
 			case"4":
-				System.out.println("終了します。");
+				System.out.println("しゅうりょうします");
 				scanner.close();
-				return;
-			default:
-				System.out.println("無効な入力です");
-					
-	
+				break;
+				
+				default:
+					System.out.println("値が間違っています");
 			
 			}
 		}
 	}
+	
 }
