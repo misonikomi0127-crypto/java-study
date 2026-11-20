@@ -30,12 +30,20 @@ public class Todo{
 		}else {
 			System.out.println("値がまちがっている");
 		}
+		
+		public static void completedTask(int index) {
+			if(index >= 0 && index < tasks.size()) {
+				tasks.set(index,get(index) + "完了");
+			}else {
+				System.out.println("値がまちがっています");
+			}
+		}
 	}
 	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		while(true) {
-			System.out.println("\n1.追加 2.表示 3.削除 4.終了");
+			System.out.println("\n1.追加 2.表示 3.削除 4.終了 5.完了");
 			String input = scanner.nextLine();
 			switch(input) {
 			//終了時にはbreakをつける
@@ -59,6 +67,12 @@ public class Todo{
 				System.out.println("しゅうりょうします");
 				scanner.close();
 				break;
+				
+			case"5":
+				System.out.println("完了するタスクを入力してくしてください");
+				int index = Integer.parseInt(scanner.nextLine()) -1;
+				completedTask(index);
+				breask;
 				
 				default:
 					System.out.println("値が間違っています");
