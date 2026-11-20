@@ -4,9 +4,12 @@ import java.util.Scanner;
 
 public class Todo{
 	static ArrayList<String> tasks = new ArrayList<>();
+	static ArrayList<Boolean> completed = new ArrayList<>();
+	
 	
 	public static void addTask(String task) {
 		tasks.add(task);
+		completed.add(false);
 		System.out.println("追加しました: " + task);
 	}
 	
@@ -16,8 +19,11 @@ public class Todo{
 			System.out.println("リストがありません");
 		}else {
 			for(int i = 0; i < tasks.size(); i++){
-				//ArrayListから値を取り出すにはget()が必要
-				System.out.println((i + 1) + ":" + tasks.get(i));
+				if(completed.get(i)) {
+					System.out.println((i + 1) + ":" + tasks.get(i) + " [完了]");
+				}else {
+					System.out.println((i + 1) + ":" + tasks.get(i) + " [未完了]");
+				}
 			}
 		}
 	}
@@ -25,6 +31,7 @@ public class Todo{
 	public static void deleteTask(int deleteindex) {
 		if(deleteindex >= 0 && deleteindex < tasks.size()) {
 			String removed = tasks.remove(deleteindex);
+			completed.remove(deleteindex);
 			System.out.println("削除しました: " + removed);
 	 //値が違う場合も入力
 		}else {
@@ -34,10 +41,10 @@ public class Todo{
 	
 		public static void completedTask(int completeindex) {
 			if(completeindex >= 0 && completeindex < tasks.size()) {
-				String completed = tasks.set(completeindex,tasks.get(completeindex) + "「完了」");
-				System.out.println("完了しました:" + completed );
+				completed.set(completeindex, true);
+				System.out.println((completeindex + 1) +":" + "完了しました");
 			}else {
-				System.out.println("値がまちがっています");
+				System.out.println("値が間違っています");
 			}
 	}
 
